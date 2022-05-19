@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        echo "Index";
     }
 
     /**
@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.post.create');
     }
 
     /**
@@ -34,7 +34,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // dd($request);
+       //dd(Request('title'));
+        dd($request->all());
     }
 
     /**
