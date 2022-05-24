@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\StoreRequest;
+use App\Models\Category;
+use App\Models\Post;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,7 +27,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.post.create');
+        //$categories = Category::get();
+        $categories = Category::pluck('id','title');
+        //dd($categories);
+        return view('dashboard.post.create',compact('categories'));
     }
 
     /**
@@ -32,11 +39,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
        // dd($request);
        //dd(Request('title'));
-        dd($request->all());
+        //dd($request->all());
+        $data = array_merge($request->all(),['image'=>'']);
+        //dd($data);
+        Post::create($data);
     }
 
     /**
